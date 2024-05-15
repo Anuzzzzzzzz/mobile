@@ -20,9 +20,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-              'Vivamus ac justo enim. Integer finibus, libero vel tempus euismod, '
-              'lectus sapien volutpat sapien, vel cursus nisi sapien nec ex.',
+              'Nothing here',
               style: TextStyle(fontSize: 16.0),
             ),
             SizedBox(height: 20.0),
@@ -32,7 +30,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Email: info@example.com\nPhone: +1234567890',
+              'Email: anuj.paudel061@gmail.com\nPhone: +977 9845354280',
               style: TextStyle(fontSize: 16.0),
             ),
           ],
