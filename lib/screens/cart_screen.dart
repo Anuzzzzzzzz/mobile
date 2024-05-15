@@ -8,11 +8,15 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List<String> cartItems = ['Item 1', 'Item 2', 'Item 3']; // Dummy cart items
+  final List<String> _items = [
+    'Item 1',
+    'Item 2',
+    'Item 3'
+  ]; // Dummy cart items
 
-  void deleteItem(int index) {
+  void _deleteItem(int index) {
     setState(() {
-      cartItems.removeAt(index);
+      _items.removeAt(index);
     });
   }
 
@@ -22,27 +26,20 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: const Text('Cart'),
       ),
-      body: cartItems.isEmpty
-          ? const Center(
-              child: Text(
-                'Your Cart is Empty',
-                style: TextStyle(fontSize: 20.0),
-              ),
-            )
-          : ListView.builder(
-              itemCount: cartItems.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(cartItems[index]),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      deleteItem(index);
-                    },
-                  ),
-                );
+      body: ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(_items[index]),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                _deleteItem(index);
               },
             ),
+          );
+        },
+      ),
     );
   }
 }

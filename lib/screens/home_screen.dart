@@ -9,10 +9,22 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: const Center(
-        child: Text(
-          'Home Screen',
-          style: TextStyle(fontSize: 20.0),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Welcome to the Home Screen!',
+              style: TextStyle(fontSize: 24.0),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // Add navigation logic here
+              },
+              child: const Text('Explore Products'),
+            ),
+          ],
         ),
       ),
     );
