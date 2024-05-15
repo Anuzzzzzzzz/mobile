@@ -9,8 +9,8 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -18,9 +18,9 @@ class AboutScreen extends StatelessWidget {
               'About Us',
               style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 20.0),
             Text(
-              'Nothing here',
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec maximus nulla, sit amet efficitur leo. Sed sit amet facilisis nisi. Nulla ac viverra est. Integer eu elit eget ex efficitur sodales. Duis ac posuere nisi. Phasellus nec risus a dolor lobortis elementum non eget felis. Suspendisse potenti. Mauris euismod ut magna nec dignissim.',
               style: TextStyle(fontSize: 16.0),
             ),
             SizedBox(height: 20.0),
@@ -30,7 +30,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Email: anuj.paudel061@gmail.com\nPhone: +977 9845354280',
+              'Email: info@example.com\nPhone: +123 456 7890',
               style: TextStyle(fontSize: 16.0),
             ),
           ],

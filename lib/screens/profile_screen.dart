@@ -9,27 +9,24 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'User Profile',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/profile_image.png'),
             ),
-            const SizedBox(height: 10.0),
-            const Text(
-              'Name: Anuj Paudel\nEmail: anuj.paudel061@gmail.com',
-              style: TextStyle(fontSize: 16.0),
+            SizedBox(height: 20),
+            Text(
+              'John Doe',
+              style: TextStyle(fontSize: 24),
             ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Logout functionality
-                Navigator.pop(context); // Navigate back to previous screen
-              },
-              child: const Text('Logout'),
+            SizedBox(height: 10),
+            Text(
+              'john.doe@example.com',
+              style: TextStyle(fontSize: 16),
             ),
           ],
         ),

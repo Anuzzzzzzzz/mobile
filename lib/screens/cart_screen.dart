@@ -8,13 +8,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final List<String> _items = [
-    'Item 1',
-    'Item 2',
-    'Item 3'
-  ]; // Dummy cart items
-
-  void _deleteItem(int index) {
+  final List<String> _items = ['Item 1', 'Item 2', 'Item 3'];
+  void _removeItem(int index) {
     setState(() {
       _items.removeAt(index);
     });
@@ -26,19 +21,33 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: const Text('Cart'),
       ),
-      body: ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(_items[index]),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () {
-                _deleteItem(index);
+      body: _items.isEmpty
+          ? const Center(
+              child: Text(
+                'Your Cart is Empty!',
+                style: TextStyle(fontSize: 24.0),
+              ),
+            )
+          : ListView.builder(
+              itemCount: _items.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_items[index]),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      _removeItem(index);
+                    },
+                  ),
+                );
               },
             ),
-          );
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // Add checkout functionality here
         },
+        label: const Text('Checkout'),
+        icon: const Icon(Icons.shopping_cart),
       ),
     );
   }

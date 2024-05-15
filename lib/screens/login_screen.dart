@@ -1,81 +1,54 @@
+import 'package:e_commerce_app/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  void login() {
-    // Implement your login logic here
-    String email = emailController.text;
-    String password = passwordController.text;
-
-    // Check if email and password are valid
-    if (email.isNotEmpty && password.isNotEmpty) {
-      // If login is successful, navigate to dashboard
-      Navigator.pushReplacementNamed(context, '/dashboard');
-    } else {
-      // Show error message if login fails
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content: const Text('Invalid email or password'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    String email = '';
+    String password = '';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Login to Your Account',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+            TextField(
+              decoration: const InputDecoration(labelText: 'Email'),
+              onChanged: (value) {
+                email = value;
+              },
             ),
-            const SizedBox(height: 20.0),
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
+            const SizedBox(height: 20),
+            TextField(
               obscureText: true,
+              decoration: const InputDecoration(labelText: 'Password'),
+              onChanged: (value) {
+                password = value;
+              },
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                login();
+                if (email.isNotEmpty && password.isNotEmpty) {
+                  // Replace this with your authentication logic
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DashboardScreen()),
+                  );
+                } else {
+                  // Show an error message if fields are empty
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Please enter email and password')),
+                  );
+                }
               },
               child: const Text('Login'),
             ),
