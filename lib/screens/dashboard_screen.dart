@@ -1,5 +1,3 @@
-import 'package:e_commerce_app/screens/login_screen.dart';
-import 'package:e_commerce_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -14,54 +12,60 @@ class DashboardScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              // Implement logout functionality
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
+              _logout(context); // Call logout function
             },
           ),
         ],
       ),
-      body: const Center(
-        child: Text(
-          'Welcome to Your Dashboard',
-          style: TextStyle(fontSize: 20.0),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your custom functionality here
-        },
-        child: const Icon(Icons.add),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
+            const Text(
+              'Welcome to Dashboard',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            ListTile(
-              title: const Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()),
-                );
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
               },
+              child: const Text('Home'),
             ),
-            // Add more list items for other functionalities
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/cart');
+              },
+              child: const Text('Cart'),
+            ),
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/about');
+              },
+              child: const Text('About'),
+            ),
+            const SizedBox(height: 10.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+              child: const Text('Profile'),
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void _logout(BuildContext context) {
+    // Navigate to the login screen and remove all routes from the stack
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      '/login', // Replace with the route name of your login screen
+      (route) => false,
     );
   }
 }

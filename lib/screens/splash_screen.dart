@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -6,27 +5,30 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Simulate a loading process using Future.delayed
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
-    });
-
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlutterLogo(size: 100),
-            SizedBox(height: 20),
-            Text(
-              'Welcome to Your App',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Container(
+              width: 150,
+              height: 150,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: const FlutterLogo(size: 100),
             ),
-            SizedBox(height: 20),
-            CircularProgressIndicator(), // Add a loading indicator
+            const SizedBox(height: 20.0),
+            const Text(
+              'Your App Name',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),

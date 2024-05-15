@@ -9,29 +9,60 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: const SingleChildScrollView(
+      body: const Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'About Us',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 20.0),
             Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec maximus nulla, sit amet efficitur leo. Sed sit amet facilisis nisi. Nulla ac viverra est. Integer eu elit eget ex efficitur sodales. Duis ac posuere nisi. Phasellus nec risus a dolor lobortis elementum non eget felis. Suspendisse potenti. Mauris euismod ut magna nec dignissim.',
-              style: TextStyle(fontSize: 16.0),
+              'Welcome to my e-commerce app!.',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
             ),
             SizedBox(height: 20.0),
             Text(
               'Contact Us',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 10.0),
             Text(
-              'Email: info@example.com\nPhone: +123 456 7890',
-              style: TextStyle(fontSize: 16.0),
+              'Email: anuj.paudel061@gmail.com',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+            Text(
+              'Phone: +977 9845354280',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              'Location',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'Pokhara, Nepal🇳🇵',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
             ),
           ],
         ),

@@ -9,24 +9,31 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(20),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/profile_image.png'),
+            const Text(
+              'User Profile',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            Text(
-              'John Doe',
-              style: TextStyle(fontSize: 24),
+            const SizedBox(height: 20.0),
+            const ListTile(
+              title: Text('Name: Anuj Paudel'),
             ),
-            SizedBox(height: 10),
-            Text(
-              'john.doe@example.com',
-              style: TextStyle(fontSize: 16),
+            const ListTile(
+              title: Text('Email: anuj.paudel061@gmail.com'),
+            ),
+            const ListTile(
+              title: Text('Phone: 9845354280'),
+            ),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // Implement action for edit profile button
+              },
+              child: const Text('Edit Profile'),
             ),
           ],
         ),
