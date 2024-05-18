@@ -1,79 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart'; // Import the intl package
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
-
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final List<String> _items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5'
-  ];
-  double _totalPrice = 50.00; // Replace with actual total price
+  List<double> prices = [100.50, 200.75, 150.30]; // Example list of prices
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
+        title: Text('Cart'),
       ),
       body: ListView.builder(
-        itemCount: _items.length,
+        itemCount: prices.length,
         itemBuilder: (context, index) {
+          // Format the price in Nepalese Rupees (NPR)
+          final priceFormatted =
+              NumberFormat.currency(locale: 'ne_NP', symbol: 'रू')
+                  .format(prices[index]);
           return ListTile(
-            leading: CircleAvatar(
-              child: Text((index + 1).toString()),
-            ),
-            title: Text(_items[index]),
-            subtitle: Text(
-              'Price: ${_formatPrice(10.00)}',
-            ),
+            title: Text(
+                'Item ${index + 1} - $priceFormatted'), // Display formatted price
             trailing: IconButton(
-              icon: const Icon(Icons.delete),
+              icon: Icon(Icons.delete),
               onPressed: () {
-                _deleteItem(index); // Call delete function
+                setState(() {
+                  prices.removeAt(index); // Remove price from the list
+                });
               },
             ),
           );
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Total: ${_formatPrice(_totalPrice)}',
-              style: const TextStyle(fontSize: 18.0),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Implement checkout functionality
-              },
-              child: const Text('Checkout'),
-            ),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add price to the list
+          setState(() {
+            prices.add(99.99);
+          });
+        },
+        child: Icon(Icons.add),
       ),
     );
-  }
-
-  void _deleteItem(int index) {
-    setState(() {
-      _items.removeAt(index);
-      _totalPrice -= 10.00; // Adjust total price accordingly
-    });
-  }
-
-  String _formatPrice(double price) {
-    final nepaliFormat = NumberFormat.currency(locale: 'ne_NP', symbol: 'रू');
-    return nepaliFormat.format(price);
   }
 }

@@ -1,34 +1,47 @@
+import 'package:e_commerce_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Simulate some loading time
+    Future.delayed(Duration(seconds: 2), () {
+      // Navigate to the home screen after the splash screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 150,
-              height: 150,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: const FlutterLogo(size: 100),
+          children: <Widget>[
+            FlutterLogo(
+              size: 100,
             ),
-            const SizedBox(height: 20.0),
-            const Text(
-              'Your App Name',
+            SizedBox(height: 20),
+            Text(
+              'E-Commerce App',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 24.0,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(height: 10),
+            CircularProgressIndicator(),
           ],
         ),
       ),

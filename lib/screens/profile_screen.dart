@@ -1,39 +1,73 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            color: Colors.black, // App theme color
+          ),
+        ),
+        backgroundColor: Colors.white, // Background color
+        elevation: 0, // No shadow
+        centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'User Profile',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(height: 20.0),
-            const ListTile(
-              title: Text('Name: Anuj Paudel'),
+            SizedBox(height: 20),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/profile_image.jpg'),
             ),
-            const ListTile(
-              title: Text('Email: anuj.paudel061@gmail.com'),
+            SizedBox(height: 20),
+            Text(
+              'Anuj Paudel',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const ListTile(
-              title: Text('Phone: 9845354280'),
+            Text(
+              'anuj.paudel061@gmail.com', // Replace with user's email
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implement action for edit profile button
+                Navigator.pushNamed(
+                    context, '/login'); // Navigate to login screen
               },
-              child: const Text('Edit Profile'),
+              child: Text('Login'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                    context, '/register'); // Navigate to register screen
+              },
+              child: Text('Register'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                // Perform logout functionality
+              },
+              child: Text('Logout'),
             ),
           ],
         ),

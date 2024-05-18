@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About'),
+        title: Text(
+          'About',
+          style: TextStyle(
+            color: Colors.black, // App theme color
+          ),
+        ),
+        backgroundColor: Colors.white, // Background color
+        elevation: 0, // No shadow
+        centerTitle: true,
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,52 +23,39 @@ class AboutScreen extends StatelessWidget {
             Text(
               'About Us',
               style: TextStyle(
-                fontSize: 24.0,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 20),
             Text(
-              'Welcome to my e-commerce app!.',
+              'Welcome to our E-Commerce App! We strive to provide you with the best shopping experience.',
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 16,
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 20),
             Text(
               'Contact Us',
               style: TextStyle(
-                fontSize: 24.0,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
-            Text(
-              'Email: anuj.paudel061@gmail.com',
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text('Email: anuj.paudel061@gmail.com'),
+              onTap: () {
+                // Handle email contact
+              },
             ),
-            Text(
-              'Phone: +977 9845354280',
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Text(
-              'Location',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              'Pokhara, Nepal🇳🇵',
-              style: TextStyle(
-                fontSize: 16.0,
-              ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: Text('Phone: 9845354280'),
+              onTap: () {
+                // Handle phone contact
+              },
             ),
           ],
         ),

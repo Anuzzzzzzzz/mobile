@@ -1,66 +1,128 @@
+import 'package:e_commerce_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: Text(
+          'Register',
+          style: TextStyle(
+            color: Colors.black, // App theme color
+          ),
+        ),
+        backgroundColor: Colors.white, // Background color
+        elevation: 0, // No shadow
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Create an Account',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            const TextField(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 10.0),
-            const TextField(
+            SizedBox(height: 20),
+            TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
-                border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20),
+            TextField(
+              controller: _confirmPasswordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Confirm Password',
+              ),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implement register functionality
+                _register(context);
               },
-              child: const Text('Register'),
-            ),
-            const SizedBox(height: 10.0),
-            TextButton(
-              onPressed: () {
-                // Navigate back to Login Screen
-                Navigator.pop(context);
-              },
-              child: const Text('Already have an account? Login'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Register button color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: Text(
+                'Register',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white, // Text color
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _register(BuildContext context) {
+    // Validate registration details
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+    String confirmPassword = _confirmPasswordController.text.trim();
+
+    // Perform registration authentication (dummy validation)
+    if (email.isNotEmpty &&
+        password.isNotEmpty &&
+        confirmPassword.isNotEmpty &&
+        password == confirmPassword) {
+      // Navigate to home screen on successful registration
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } else {
+      // Show error message for invalid registration
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text(
+              'Invalid registration details. Please make sure all fields are filled and passwords match.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }
